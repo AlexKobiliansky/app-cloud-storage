@@ -4,14 +4,17 @@
   "description": "cloud storage",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "author": "alex kobilianskiy <alexey.kobilianskiy@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "config": "^3.3.3",
     "express": "^4.17.1",
-    "mongoose": "^5.11.17"
+    "express-validator": "^6.9.2",
+    "mongoose": "^5.11.15"
   },
   "devDependencies": {
     "nodemon": "^2.0.7"
