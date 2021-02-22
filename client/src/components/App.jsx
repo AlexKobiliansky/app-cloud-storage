@@ -6,6 +6,8 @@ import Registration from './authorization/Registration';
 import Login from './authorization/Login';
 import {useDispatch, useSelector} from 'react-redux';
 import {auth} from '../actions/user';
+import Disk from './disk/Disk';
+import {Redirect} from 'react-router-dom'
 
 function App() {
   const isAuth = useSelector(state => state.user.isAuth);
@@ -22,13 +24,20 @@ function App() {
   return (
     <BrowserRouter>
       <div className="app">
-        <Navbar />
+        <Navbar/>
         <div className="wrap">
-          {!isAuth && <Switch>
-            <Route path='/registration' component={Registration}/>
-            <Route path='/login' component={Login}/>
-          </Switch>}
+          {!isAuth
+            ? <Switch>
+              <Route path='/registration' component={Registration}/>
+              <Route path='/login' component={Login}/>
+              <Redirect to='/'/>
+            </Switch>
 
+            : <Switch>
+              <Route exact path='/' component={Disk}/>
+              <Redirect to='/'/>
+            </Switch>
+          }
         </div>
 
       </div>
