@@ -64,11 +64,17 @@ class FileController {
       file.mv(path);
 
       const type = file.name.split('.').pop();
+
+      let filePath = file.name
+      if (parent) {
+        filePath = parent.path + "/" + file.name
+      }
+
       const dbFile = new File({
         name: file.name,
         type,
         size: file.size,
-        path: path,
+        path: filePath,
         parent: parent && parent._id,
         user: user._id
       });
@@ -77,7 +83,6 @@ class FileController {
       await user.save();
 
       res.json(dbFile);
-
     } catch (e) {
       console.log(e);
       return res.status(500).json({message: "Upload error"})
@@ -88,7 +93,7 @@ class FileController {
   async downloadFile(req, res) {
     try {
       const file = await File.findOne({_id: req.query.id, user: req.user.id});
-      const path = file.path;
+      const path = fileService.getPath(file)
       if(fs.existsSync(path)) {
         return res.download(path, file.name)
       }
@@ -97,6 +102,22 @@ class FileController {
     } catch(e) {
       console.log(e);
       res.status(500).json({message: 'Download error'})
+    }
+  }
+
+  async deleteFile(req, res) {
+    try {
+      const file = await File.findOne({_id: req.query.id, user: req.user.id})
+      if (!file) {
+        return res.status(400).json({message: 'file not found!'});
+      }
+      fileService.deleteFile(file);
+      await file.remove();
+      return res.json({message: 'File was deleted'})
+
+    } catch(e) {
+      console.log(e.message);
+      return res.status(400).json({message: 'Dir is not empty'});
     }
   }
 }
