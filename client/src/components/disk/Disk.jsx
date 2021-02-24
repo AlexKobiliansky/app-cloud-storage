@@ -5,6 +5,7 @@ import FileList from './FileList/FileList';
 import './disk.scss';
 import Popup from './Popup';
 import {setCurrentDir, setPopupDisplay} from '../../reducers/fileReducer';
+import Uploader from './uploader/Uploader';
 
 
 function Disk() {
@@ -70,6 +71,7 @@ function Disk() {
         </div>
         <FileList/>
         <Popup/>
+        <Uploader />
       </div>
       :
       <div
