@@ -106,6 +106,24 @@ export function deleteFile(file) {
 }
 
 
+export function searchFiles(search) {
+  return async dispatch => {
+    try {
+      const response = await axios.get(`http://localhost:5000/api/files/search?search=${search}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+      });
+      dispatch(setFiles(response.data));
+    } catch(e) {
+      console.log(e.message)
+    } finally {
+      dispatch(hideLoader())
+    }
+  }
+}
+
+
 
 export async function downloadFile(file) {
   const response = await fetch(`http://localhost:5000/api/files/download?id=${file._id}`, {
