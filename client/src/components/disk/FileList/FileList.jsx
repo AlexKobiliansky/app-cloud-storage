@@ -7,6 +7,12 @@ import {CSSTransition, TransitionGroup} from 'react-transition-group';
 function FileList(props) {
   const files = useSelector(state => state.files.files );
 
+  if (files.length === 0) {
+    return (
+      <div className="loader">Папка пуста</div>
+    )
+  }
+
   return (
     <div className='filelist'>
       <div className="filelist__header">
