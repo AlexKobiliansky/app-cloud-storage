@@ -8,6 +8,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {auth} from '../actions/user';
 import Disk from './disk/Disk';
 import {Redirect} from 'react-router-dom'
+import Profile from './profile/Profile';
 
 function App() {
   const isAuth = useSelector(state => state.user.isAuth);
@@ -17,7 +18,7 @@ function App() {
     try {
       dispatch(auth())
     } catch (e) {
-      alert(e.response.data.message);
+      console.log(e.response.data.message);
     }
   }, [])
 
@@ -35,6 +36,7 @@ function App() {
 
             : <Switch>
               <Route exact path='/' component={Disk}/>
+              <Route exact path='/profile' component={Profile}/>
               <Redirect to='/'/>
             </Switch>
           }
