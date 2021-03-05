@@ -2,5 +2,6 @@
   "serverPort": 5000,
   "dbUrl": "mongodb+srv://alex:632748@cloud.lyjjn.mongodb.net/cloud?retryWrites=true&w=majority",
   "secretKey": "my-super-secret-key",
-  "filePath": "/home/alex/myserver/react/app-cloud-storage/server/files"
+  "filePath": "/home/alex/myserver/react/app-cloud-storage/server/files",
+  "staticPath": "/home/alex/myserver/react/app-cloud-storage/server/static"
 }

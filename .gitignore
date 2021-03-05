@@ -6,6 +6,9 @@
 /client/.pnp
 /client/.pnp.js
 
+/server/files
+/server/static
+
 # testing
 /client/coverage
 

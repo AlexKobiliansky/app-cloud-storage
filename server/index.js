@@ -12,6 +12,7 @@ const cors = require('cors')
 app.use(fileUpload({}));
 app.use(cors());
 app.use(express.json({extended: true}));
+app.use(express.static('static'))
 app.use('/api/auth', authRouter);
 app.use('/api/files', fileRouter);
 
